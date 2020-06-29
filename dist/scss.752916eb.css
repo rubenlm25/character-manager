@@ -1,0 +1,69 @@
+.title {
+  background-color: black;
+  color: white;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+.title h1 {
+  display: inline-block;
+  align-self: center;
+  font-size: 40px;
+}
+
+.mainchart {
+  width: 75%;
+  margin: 50px auto 100px auto;
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: auto;
+  column-gap: 5%;
+  row-gap: 30px;
+}
+.mainchart .cards {
+  display: flex;
+  flex-direction: column;
+  background-color: #e7e7e7;
+  justify-content: space-between;
+}
+.mainchart .cards:hover {
+  box-shadow: 0px 0px 3px 2px seagreen;
+}
+.mainchart .cards .characpic {
+  box-sizing: border-box;
+  border: 1px solid black;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.mainchart .cards .name {
+  padding: 15px 10px 15px 10px;
+  font-size: 24px;
+  text-align: center;
+}
+.mainchart .cards .shortdesc {
+  padding: 5px 10px 5px 10px;
+  text-align: justify;
+  word-wrap: break-word;
+}
+.mainchart .cards .buttons {
+  display: flex;
+  flex-direction: row;
+}
+.mainchart .cards .buttons .cardbuttons {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  color: white;
+  background-color: teal;
+  width: 50%;
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid grey;
+  padding: 15px 0 15px 0;
+}
+.mainchart .cards .buttons .cardbuttons:hover {
+  border: 1px solid blue;
+}
+
+/*# sourceMappingURL=/scss.752916eb.css.map */

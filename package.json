@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-        "dev": "parcel index.html",
+    "dev": "parcel index.html",
     "build": "parcel build index.html"
   },
   "repository": {
@@ -19,6 +19,10 @@
   },
   "homepage": "https://github.com/rubenlm25/character-manager#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.9"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
   }
 }
