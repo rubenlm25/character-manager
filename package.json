@@ -1,0 +1,24 @@
+{
+  "name": "character-manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+        "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubenlm25/character-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubenlm25/character-manager/issues"
+  },
+  "homepage": "https://github.com/rubenlm25/character-manager#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
