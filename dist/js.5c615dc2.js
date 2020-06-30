@@ -1892,9 +1892,10 @@ module.exports = require('./lib/axios');
 
     for (i = 0; i < resp.data.length; i++) {
       a = document.importNode(item, true);
-      a.getElementsByTagName("img")[0].src = "data:image/gif;base64," + resp.data[i].image;
+      a.setAttribute("id", resp.data[i].id);
+      a.getElementsByTagName("img")[0].src = "data:image/jpeg;base64," + resp.data[i].image;
       a.querySelector(".name").textContent += resp.data[i].name;
-      a.querySelector(".openchar").setAttribute("id", resp.data[i].id);
+      a.querySelector(".openchar").setAttribute("data-id", resp.data[i].id);
       a.querySelector(".shortdesc").textContent += resp.data[i].shortDescription;
       a.querySelector(".delete").setAttribute("data-id", resp.data[i].id);
       a.querySelector(".edit").setAttribute("data-id", resp.data[i].id);
@@ -1904,21 +1905,62 @@ module.exports = require('./lib/axios');
     var clickedid;
     document.querySelectorAll(".openchar").forEach(function (el) {
       el.addEventListener("click", function () {
-        clickedid = this.id;
+        clickedid = this.getAttribute("data-id");
         console.log(clickedid);
+        var selectedchar = resp.data.find(function (element) {
+          return element.id == clickedid;
+        });
+        console.table(selectedchar);
+        document.querySelector(".singleimg").src = "";
+        document.querySelector(".singleimg").src = "data:image/jpeg;base64," + selectedchar.image;
+        document.querySelector(".mainname").textContent = selectedchar.name;
+        document.querySelector(".desctext").textContent = selectedchar.description;
+        document.getElementById("togglemain").style.display = "grid";
+        document.querySelector(".mainedit").setAttribute("data-id", selectedchar.id);
+        document.querySelector(".maindelete").setAttribute("data-id", selectedchar.id);
       });
+    });
+    document.getElementById("togglemain").addEventListener("click", function () {
+      document.getElementById("togglemain").style.display = "none";
     });
     document.querySelectorAll(".delete").forEach(function (el) {
       el.addEventListener("click", function () {
         var dataid = this.getAttribute("data-id");
         console.log(dataid);
+
+        if (confirm("Are you sure you want to delete this character?")) {
+          axios.delete("https://character-database.becode.xyz/characters/" + dataid);
+          var nodetoremove = document.getElementById(dataid);
+          console.log(nodetoremove);
+          nodetoremove.parentNode.removeChild(nodetoremove);
+        }
       });
     });
     document.querySelectorAll(".edit").forEach(function (el) {
       el.addEventListener("click", function () {
         var dataid = this.getAttribute("data-id");
         console.log(dataid);
+        localStorage.setItem("idedit", JSON.stringify(dataid));
+        window.location = "./editor.html";
       });
+    });
+    document.querySelector(".maindelete").addEventListener("click", function () {
+      var dataid = document.querySelector(".maindelete").getAttribute("data-id");
+      console.log(dataid);
+
+      if (confirm("Are you sure you want to delete this character?")) {
+        axios.delete("https://character-database.becode.xyz/characters/" + dataid);
+        var nodetoremove = document.getElementById(dataid);
+        console.log(nodetoremove);
+        nodetoremove.parentNode.removeChild(nodetoremove);
+        document.getElementById("togglemain").style.display = "none";
+      }
+    });
+    document.querySelector(".mainedit").addEventListener("click", function () {
+      var dataid = document.querySelector(".mainedit").getAttribute("data-id");
+      console.log(dataid);
+      localStorage.setItem("idedit", JSON.stringify(dataid));
+      window.location = "./editor.html";
     });
   });
 })();
@@ -1950,7 +1992,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37077" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46095" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

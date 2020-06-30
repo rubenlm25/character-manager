@@ -77,3 +77,85 @@
         }
     }
 }
+
+#togglemain {
+    display: none;
+
+    width: 80%;
+    background-color: rgb(231, 231, 231);
+    grid-template-columns: 30% 66%;
+    column-gap: 4%;
+    grid-template-rows: auto auto;
+    row-gap: 20px;
+
+    padding: 30px;
+    border-radius: 20px;
+
+    position: fixed;
+    box-sizing: border-box;
+    border: 1px solid black;
+    left: 10%;
+    top: 10%;
+    &:hover {
+        box-shadow: 0px 0px 3px 2px seagreen;
+    }
+
+
+    .imgbox {
+        grid-column : 1 / 2;
+        grid-row: 1 / 2;
+        .singleimg {
+            width : 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+    }
+
+    .chardata {
+        grid-column: 2 / 3;
+        grid-row : 1 / 3;
+        
+        h2 {
+            font-size: 36px;
+            padding : 15px 0 15px 0;
+        }
+
+        h3 {
+            font-size: 24px;
+            padding : 10px 0 10px 0;
+        }
+
+        .desctext {
+            font-size: 16;
+            line-height: 1.3em;
+            padding: 5px 0 5px 0;
+            text-align: justify;
+            word-wrap: break-word;
+        }
+    }
+
+    .mainbuttons {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        
+
+        .buttonm {
+
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            color: white;
+            background-color: teal;
+            width: 80%;
+            
+            padding: 0px;
+            margin: 10px 10% 10px 10%;
+            border: 1px solid grey;
+            padding: 10px 0 10px 0;
+            &:hover{
+                border: 1px solid blue;
+            }
+        }
+
+    }
+}
