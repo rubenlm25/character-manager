@@ -40,13 +40,17 @@
   height: 200px;
   object-fit: cover;
 }
-.mainchart .cards .name {
-  padding: 15px 10px 15px 10px;
+.mainchart .cards .textarea {
+  margin: 15px 10px 15px 10px;
+}
+.mainchart .cards .textarea .name {
   font-size: 24px;
   text-align: center;
+  line-height: 1.2em;
 }
-.mainchart .cards .shortdesc {
-  padding: 5px 10px 5px 10px;
+.mainchart .cards .textarea .shortdesc {
+  padding-top: 10px;
+  line-height: 1.4em;
   text-align: justify;
   word-wrap: break-word;
 }
