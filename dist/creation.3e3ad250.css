@@ -1,5 +1,27 @@
-body {
+section {
+  width: 50%;
+  margin: 50px auto 50px auto;
+  padding: 30px;
+  border-radius: 20px;
   text-align: center;
+  background-color: #e7e7e7;
+}
+section #run-creation {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  color: white;
+  background-color: teal;
+  margin: 10px 10% 10px 10%;
+  border: 1px solid grey;
+  padding: 10px 30px 10px 30px;
+}
+section #run-creation:hover {
+  background-color: seagreen;
+}
+section #run-creation:active {
+  color: teal;
+  background-color: white;
 }
 
 /*# sourceMappingURL=/creation.3e3ad250.css.map */

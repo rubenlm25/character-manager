@@ -2620,72 +2620,91 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var name;
-var shortdescription;
-var image;
-var description;
-var reader;
-var img;
-var dataURL;
-var test;
+(function () {
+  var name;
+  var shortdescription;
+  var image;
+  var description;
+  var reader;
+  var img;
+  var dataURL;
+  var test;
+  var file;
 
-var axios = require('axios');
+  var axios = require('axios');
 
-function encodeImageFileAsURL(element) {
-  var file = element.files[0];
-  reader = new FileReader();
+  document.getElementById("image-selector").addEventListener("change", function () {
+    readImage(document.getElementById("createImgSelector"), document.getElementById("createImgPreview"));
+  }); // document.getElementById("image-selector").addEventListener("change", ()=>{
+  //     let x = document.getElementById("image-selector").src;
+  //     console.log(x);
+  //     encodeImageFileAsURL(x);
+  // });
 
-  reader.onloadend = function () {
-    result = reader.result;
-    img = result.substring(23, result.length);
-    console.log("RESULT", img);
-  };
+  document.getElementById("run-creation").addEventListener("click", function () {
+    // put a value in variable
+    name = document.getElementById("name-creation").value;
+    shortdescription = document.getElementById("short-description-creation").value;
+    description = document.getElementById("description-creation").value;
+    console.log(image); // verification all value complete
 
-  reader.readAsDataURL(file);
-}
+    function addcharacter(_x, _x2, _x3, _x4) {
+      return _addcharacter.apply(this, arguments);
+    }
 
-document.getElementById("run-creation").addEventListener("click", function () {
-  // put a value in variable
-  name = document.getElementById("name-creation").value;
-  shortdescription = document.getElementById("short-description-creation").value;
-  description = document.getElementById("description-creation").value;
-  console.log(image);
-  addcharacter(name, description, shortdescription, img); // verification all value complete
+    function _addcharacter() {
+      _addcharacter = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(name, description, shortdescription, image) {
+        var params, res;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                params = {
+                  name: name,
+                  shortDescription: shortdescription,
+                  image: image,
+                  description: description
+                };
+                _context.next = 3;
+                return axios.post('https://character-database.becode.xyz/characters', params);
 
-  function addcharacter(_x, _x2, _x3, _x4) {
-    return _addcharacter.apply(this, arguments);
-  }
+              case 3:
+                res = _context.sent;
+                console.log(res.data);
 
-  function _addcharacter() {
-    _addcharacter = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(name, description, shortdescription, image) {
-      var params, res;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              params = {
-                name: name,
-                shortDescription: shortdescription,
-                image: image,
-                description: description
-              };
-              _context.next = 3;
-              return axios.post('https://character-database.becode.xyz/characters', params);
-
-            case 3:
-              res = _context.sent;
-              console.log(res.data);
-
-            case 5:
-            case "end":
-              return _context.stop();
+              case 5:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    }));
-    return _addcharacter.apply(this, arguments);
+        }, _callee);
+      }));
+      return _addcharacter.apply(this, arguments);
+    }
+
+    addcharacter(name, description, shortdescription, img);
+
+    function readImage(imageSelector, imagePreview) {
+      var imageSelectorInput = imageSelector.files[0];
+      var imagePreviewElement = imagePreview;
+      var reader = new FileReader();
+      reader.readAsDataURL(imageSelectorInput);
+      reader.addEventListener('load', function (event) {
+        imagePreviewElement.src = event.target.result;
+      });
+    }
+  });
+
+  function readImage(imageSelector, imagePreview) {
+    var imageSelectorInput = imageSelector.files[0];
+    var imagePreviewElement = imagePreview;
+    var reader = new FileReader();
+    reader.readAsDataURL(imageSelectorInput);
+    reader.addEventListener('load', function (event) {
+      imagePreviewElement.src = event.target.result;
+    });
   }
-});
+})();
 },{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2714,7 +2733,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49965" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

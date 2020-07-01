@@ -1,5 +1,5 @@
-(() => {
 import 'regenerator-runtime/runtime'
+(() => {
 let name;
 let shortdescription;
 let image;
@@ -8,19 +8,18 @@ let reader;
 let img;
 let dataURL;
 let test;
+let file;
 const axios = require('axios');
+document.getElementById("image-selector").addEventListener("change", () => {
+    readImage(document.getElementById("createImgSelector"), document.getElementById("createImgPreview"));        
+});
 
-function encodeImageFileAsURL(){
-    let file = this.files[0];
-    reader= new FileReader();
-    reader.onloadend = function() {
-        result = reader.result;
-        img = result.substring(23, result.length)
-        console.log("RESULT", img)
-    }
-    reader.readAsDataURL(file);
-}
-document.getElementById("image-selector").addEventListener("change",encodeImageFileAsURL())
+// document.getElementById("image-selector").addEventListener("change", ()=>{
+//     let x = document.getElementById("image-selector").src;
+//     console.log(x);
+//     encodeImageFileAsURL(x);
+// });
+
 document.getElementById("run-creation").addEventListener("click", () => {
     // put a value in variable
     name = document.getElementById("name-creation").value;
@@ -28,7 +27,6 @@ document.getElementById("run-creation").addEventListener("click", () => {
     description = document.getElementById("description-creation").value;
     console.log(image);
     
-    addcharacter(name, description, shortdescription, img);
     // verification all value complete
     async function addcharacter(name, description, shortdescription, image) {
         let params = {
@@ -39,8 +37,32 @@ document.getElementById("run-creation").addEventListener("click", () => {
         }
         let res = await axios.post('https://character-database.becode.xyz/characters', params);
         console.log(res.data);
-    
+        
+    }
+    addcharacter(name, description, shortdescription, img);
+    function readImage(imageSelector, imagePreview)
+    {
+        const imageSelectorInput = imageSelector.files[0];
+        const imagePreviewElement = imagePreview;
+
+        const reader = new FileReader();
+        reader.readAsDataURL(imageSelectorInput);
+        reader.addEventListener('load', (event) => {
+            imagePreviewElement.src = event.target.result;
+        });
     }
 
 });
+function readImage(imageSelector, imagePreview)
+{
+    const imageSelectorInput = imageSelector.files[0];
+    const imagePreviewElement = imagePreview;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(imageSelectorInput);
+    reader.addEventListener('load', (event) => {
+        imagePreviewElement.src = event.target.result;
+    });
+}
+
 })();
