@@ -69,7 +69,7 @@
                 let dataid = this.getAttribute("data-id");
 
                 console.log(dataid);
-                localStorage.setItem("idedit", JSON.stringify(dataid));
+                // localStorage.setItem("idedit", JSON.stringify(dataid));
                 window.location = "./editor.html";
             });
         });
