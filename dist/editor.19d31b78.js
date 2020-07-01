@@ -1880,92 +1880,74 @@ module.exports.default = axios;
 
 },{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"node_modules/axios/lib/core/mergeConfig.js","./defaults":"node_modules/axios/lib/defaults.js","./cancel/Cancel":"node_modules/axios/lib/cancel/Cancel.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"assets/js/index.js":[function(require,module,exports) {
-(function () {
-  var axios = require('axios');
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"assets/js/editor.js":[function(require,module,exports) {
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
-  axios.get("https://character-database.becode.xyz/characters").then(function (resp) {
-    console.table(resp.data);
-    var template, item, a;
-    template = document.getElementById("cardmodel");
-    item = template.content.querySelector("section");
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-    for (i = 0; i < resp.data.length; i++) {
-      a = document.importNode(item, true);
-      a.setAttribute("id", resp.data[i].id);
-      a.getElementsByTagName("img")[0].src = "data:image/jpeg;base64," + resp.data[i].image;
-      a.querySelector(".name").textContent += resp.data[i].name;
-      a.querySelector(".openchar").setAttribute("data-id", resp.data[i].id);
-      a.querySelector(".shortdesc").textContent += resp.data[i].shortDescription;
-      a.querySelector(".delete").setAttribute("data-id", resp.data[i].id);
-      a.querySelector(".edit").setAttribute("data-id", resp.data[i].id);
-      document.querySelector(".mainchart").appendChild(a);
-    }
+dataidJSON = localStorage.getItem('idedit');
+dataid = dataidJSON && JSON.parse(dataidJSON);
+var inputname;
+var inputshortdescription;
+var inputdescritpion;
+var jsonuser; //get the user
 
-    document.querySelectorAll(".openchar").forEach(function (el) {
-      el.addEventListener("click", function () {
-        var clickedid = this.getAttribute("data-id");
-        console.log(clickedid);
-        var selectedchar = resp.data.find(function (element) {
-          return element.id == clickedid;
-        });
-        console.table(selectedchar);
-        document.querySelector(".singleimg").src = "";
-        document.querySelector(".singleimg").src = "data:image/jpeg;base64," + selectedchar.image;
-        document.querySelector(".mainname").textContent = selectedchar.name;
-        document.querySelector(".desctext").textContent = selectedchar.description;
-        document.getElementById("togglemain").style.display = "grid";
-        document.querySelector(".mainedit").setAttribute("data-id", selectedchar.id);
-        document.querySelector(".maindelete").setAttribute("data-id", selectedchar.id);
-      });
-    });
-    document.getElementById("togglemain").addEventListener("click", function () {
-      document.getElementById("togglemain").style.display = "none";
-    });
-    document.querySelectorAll(".delete").forEach(function (el) {
-      el.addEventListener("click", function () {
-        var dataid = this.getAttribute("data-id");
-        console.log(dataid);
+var axios = require('axios');
 
-        if (confirm("Are you sure you want to delete this character?")) {
-          axios.delete("https://character-database.becode.xyz/characters/" + dataid);
-          var nodetoremove = document.getElementById(dataid);
-          console.log(nodetoremove);
-          nodetoremove.parentNode.removeChild(nodetoremove);
+function makeGetRequest() {
+  return _makeGetRequest.apply(this, arguments);
+}
+
+function _makeGetRequest() {
+  _makeGetRequest = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var res, data;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return axios.get('http://localhost:3000/users/' + dataid);
+
+          case 2:
+            res = _context2.sent;
+            data = res.data;
+            console.log(data);
+            return _context2.abrupt("return", data);
+
+          case 6:
+          case "end":
+            return _context2.stop();
         }
-      });
-    });
-    document.querySelectorAll(".edit").forEach(function (el) {
-      el.addEventListener("click", function () {
-        var dataid = this.getAttribute("data-id");
-        console.log(dataid);
-        localStorage.setItem("idedit", JSON.stringify(dataid));
-        window.location = "./editor.html";
-      });
-    });
-    document.querySelector(".maindelete").addEventListener("click", function () {
-      var dataid = document.querySelector(".maindelete").getAttribute("data-id");
-      console.log(dataid);
-
-      if (confirm("Are you sure you want to delete this character?")) {
-        axios.delete("https://character-database.becode.xyz/characters/" + dataid);
-        var nodetoremove = document.getElementById(dataid);
-        console.log(nodetoremove);
-        nodetoremove.parentNode.removeChild(nodetoremove);
-        document.getElementById("togglemain").style.display = "none";
       }
-    });
-    document.querySelector(".mainedit").addEventListener("click", function () {
-      var dataid = document.querySelector(".mainedit").getAttribute("data-id");
-      console.log(dataid);
-      localStorage.setItem("idedit", JSON.stringify(dataid));
-      window.location = "./editor.html";
-    });
-    document.querySelector(".addnewchar").addEventListener("click", function () {
-      window.location = "./creation.html";
-    });
-  });
-})();
+    }, _callee2);
+  }));
+  return _makeGetRequest.apply(this, arguments);
+}
+
+jsonuser = makeGetRequest(); ////////////////////////////////////////////////////////////////////////////////
+// complete with actual user in input and text area
+
+document.getElementById("edit-description").innerHTML = jsonuser.descritpion;
+document.getElementById("edit-shortdescription").innerHTML = jsonuser.shortDescription;
+document.getElementById("edit-name").value = jsonuser.name; ///////////////////////////////////////////////////////////////////////////////////////////
+//clic for edit
+
+document.getElementById("button-edit").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+  return regeneratorRuntime.wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          inputname = document.getElementById("edit-name").value;
+          inputdescritpion = document.getElementById("edit-description").innerHTML;
+          inputshortdescription = document.getElementById("edit-shortdescription").innerHTML;
+
+        case 3:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+}))); /////////////////////////////////////////////////
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1994,7 +1976,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43497" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40089" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -2170,5 +2152,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/js/index.js"], null)
-//# sourceMappingURL=/js.5c615dc2.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","assets/js/editor.js"], null)
+//# sourceMappingURL=/editor.19d31b78.js.map
