@@ -21,7 +21,7 @@
         border: 1px solid grey;
         padding: 15px 20px 15px 20px;
         &:hover{
-            border: 1px solid blue;
+            background-color: seagreen;
         }
         &:active {
             color: teal;
@@ -76,7 +76,7 @@
                 border: 1px solid grey;
                 padding: 15px 0 15px 0;
                 &:hover{
-                    border: 1px solid blue;
+                    background-color: seagreen;
                 }
                 &:active {
                     color: teal;
@@ -142,7 +142,7 @@
             border: 1px solid grey;
             padding: 10px 0 10px 0;
             &:hover{
-                border: 1px solid blue;
+                background-color: seagreen;
             }
             &:active {
                 color: teal;

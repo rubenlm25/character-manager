@@ -18,7 +18,7 @@
   padding: 15px 20px 15px 20px;
 }
 .newchar .addnewchar:hover {
-  border: 1px solid blue;
+  background-color: seagreen;
 }
 .newchar .addnewchar:active {
   color: teal;
@@ -65,7 +65,7 @@
   padding: 15px 0 15px 0;
 }
 .mainchart .cards .buttons .cardbuttons:hover {
-  border: 1px solid blue;
+  background-color: seagreen;
 }
 .mainchart .cards .buttons .cardbuttons:active {
   color: teal;
@@ -112,7 +112,7 @@
   padding: 10px 0 10px 0;
 }
 #togglemain .mainbuttons .buttonm:hover {
-  border: 1px solid blue;
+  background-color: seagreen;
 }
 #togglemain .mainbuttons .buttonm:active {
   color: teal;
