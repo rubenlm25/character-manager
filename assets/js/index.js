@@ -21,11 +21,11 @@
             document.querySelector(".mainchart").appendChild(a);
         }
         
-        let clickedid;
+    
 
         document.querySelectorAll(".openchar").forEach(function(el){
             el.addEventListener("click", function() {
-                clickedid = this.getAttribute("data-id");
+                let clickedid = this.getAttribute("data-id");
                 console.log(clickedid);
                 let selectedchar = resp.data.find(element => element.id == clickedid)
                 console.table(selectedchar)
@@ -42,7 +42,7 @@
 
         document.getElementById("togglemain").addEventListener("click", ()=> {
             document.getElementById("togglemain").style.display = "none";
-        })
+        });
 
 
 
@@ -87,7 +87,7 @@
             }
 
 
-        })
+        });
 
         document.querySelector(".mainedit").addEventListener("click", ()=>{
             let dataid = document.querySelector(".mainedit").getAttribute("data-id");
@@ -95,6 +95,10 @@
             console.log(dataid);
             localStorage.setItem("idedit", JSON.stringify(dataid));
             window.location = "./editor.html";
+        });
+
+        document.querySelector(".addnewchar").addEventListener("click", ()=> {
+            window.location = "./creation.html";
         });
             
     })

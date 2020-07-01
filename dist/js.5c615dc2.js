@@ -1902,10 +1902,9 @@ module.exports = require('./lib/axios');
       document.querySelector(".mainchart").appendChild(a);
     }
 
-    var clickedid;
     document.querySelectorAll(".openchar").forEach(function (el) {
       el.addEventListener("click", function () {
-        clickedid = this.getAttribute("data-id");
+        var clickedid = this.getAttribute("data-id");
         console.log(clickedid);
         var selectedchar = resp.data.find(function (element) {
           return element.id == clickedid;
@@ -1962,6 +1961,9 @@ module.exports = require('./lib/axios');
       localStorage.setItem("idedit", JSON.stringify(dataid));
       window.location = "./editor.html";
     });
+    document.querySelector(".addnewchar").addEventListener("click", function () {
+      window.location = "./creation.html";
+    });
   });
 })();
 },{"axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -1992,7 +1994,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46095" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38545" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
