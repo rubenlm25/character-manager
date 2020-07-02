@@ -1,5 +1,7 @@
 (() => {
     const axios = require('axios');
+    let markdownToHtml = require("./markdown-to-html.js");
+
     axios.get("https://character-database.becode.xyz/characters")
     .then(resp => {
         console.table(resp.data);
@@ -17,9 +19,9 @@
             // remplissage carte et injection de l'id dans le HTML
             a.setAttribute("id", resp.data[i].id)
             a.getElementsByTagName("img")[0].src = "data:image;base64,"+ resp.data[i].image;
-            a.querySelector(".name").textContent += resp.data[i].name;
+            a.querySelector(".name").innerHTML = markdownToHtml.parse(resp.data[i].name);
             a.querySelector(".openchar").setAttribute("data-id", resp.data[i].id)
-            a.querySelector(".shortdesc").textContent += resp.data[i].shortDescription;
+            a.querySelector(".shortdesc").innerHTML = markdownToHtml.parse(resp.data[i].shortDescription);
             a.querySelector(".delete").setAttribute("data-id", resp.data[i].id);
             a.querySelector(".edit").setAttribute("data-id", resp.data[i].id);
             
@@ -44,8 +46,8 @@
 
                 document.querySelector(".singleimg").src = "";
                 document.querySelector(".singleimg").src = "data:image/jpeg;base64,"+ selectedchar.image;
-                document.querySelector(".mainname").textContent = selectedchar.name;
-                document.querySelector(".desctext").textContent = selectedchar.description;
+                document.querySelector(".mainname").innerHTML = markdownToHtml.parse(selectedchar.name);
+                document.querySelector(".desctext").innerHTML = markdownToHtml.parse(selectedchar.description);
                 document.getElementById("togglemain").style.display = "grid";
                 document.querySelector(".mainedit").setAttribute("data-id", selectedchar.id);
                 document.querySelector(".maindelete").setAttribute("data-id", selectedchar.id);
