@@ -37,7 +37,8 @@ section {
     }
 
     #edit-name {
-        width: 200px;
+        width : 90%;
+        max-width: 200px;
     }
 
     #preview {
@@ -51,6 +52,7 @@ section {
 @media only screen and (max-width : 450px) {
     section {
         width: 100%;
+        box-sizing: border-box;
         textarea {
             width: 95%;
         }
