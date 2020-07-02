@@ -2634,19 +2634,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var axios = require('axios');
 
   document.getElementById("image-selector").addEventListener("change", function () {
-    readImage(document.getElementById("createImgSelector"), document.getElementById("createImgPreview"));
-  }); // document.getElementById("image-selector").addEventListener("change", ()=>{
-  //     let x = document.getElementById("image-selector").src;
-  //     console.log(x);
-  //     encodeImageFileAsURL(x);
-  // });
+    readImage(document.getElementById("image-selector"), document.getElementById("preview"));
+  });
+
+  function readImage(imageSelector, imagePreview) {
+    var imageSelectorInput = imageSelector.files[0];
+    var imagePreviewElement = imagePreview;
+    var reader = new FileReader();
+    reader.readAsDataURL(imageSelectorInput);
+    reader.addEventListener('load', function (event) {
+      imagePreviewElement.src = event.target.result;
+    });
+  }
 
   document.getElementById("run-creation").addEventListener("click", function () {
     // put a value in variable
     name = document.getElementById("name-creation").value;
     shortdescription = document.getElementById("short-description-creation").value;
     description = document.getElementById("description-creation").value;
-    console.log(image); // verification all value complete
+    image = document.getElementById("preview");
+    console.log(image);
+
+    if (name == "" || shortdescription == "" || description == "" || document.getElementById("image-selector").value == "") {
+      alert("complete all field please");
+    } else {
+      img = image.src.replace('data:', '').replace(/^.+,/, '');
+      console.log("dans fonction:", img);
+      addcharacter(name, description, shortdescription, img);
+    } // verification all value complete
+
 
     function addcharacter(_x, _x2, _x3, _x4) {
       return _addcharacter.apply(this, arguments);
@@ -2662,7 +2678,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 params = {
                   name: name,
                   shortDescription: shortdescription,
-                  image: image,
+                  image: img,
                   description: description
                 };
                 _context.next = 3;
@@ -2671,8 +2687,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 res = _context.sent;
                 console.log(res.data);
+                window.location = "./index.html";
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -2681,8 +2698,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }));
       return _addcharacter.apply(this, arguments);
     }
-
-    addcharacter(name, description, shortdescription, img);
 
     function readImage(imageSelector, imagePreview) {
       var imageSelectorInput = imageSelector.files[0];
@@ -2694,16 +2709,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     }
   });
-
-  function readImage(imageSelector, imagePreview) {
-    var imageSelectorInput = imageSelector.files[0];
-    var imagePreviewElement = imagePreview;
-    var reader = new FileReader();
-    reader.readAsDataURL(imageSelectorInput);
-    reader.addEventListener('load', function (event) {
-      imagePreviewElement.src = event.target.result;
-    });
-  }
 })();
 },{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -2733,7 +2738,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49965" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53919" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

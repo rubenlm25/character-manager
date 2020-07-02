@@ -10,7 +10,7 @@
             a = document.importNode(item, true);
 
             a.setAttribute("id", resp.data[i].id)
-            a.getElementsByTagName("img")[0].src = "data:image/jpeg;base64,"+ resp.data[i].image;
+            a.getElementsByTagName("img")[0].src = "data:image;base64,"+ resp.data[i].image;
             a.querySelector(".name").textContent += resp.data[i].name;
             a.querySelector(".openchar").setAttribute("data-id", resp.data[i].id)
             a.querySelector(".shortdesc").textContent += resp.data[i].shortDescription;

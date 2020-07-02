@@ -2628,6 +2628,8 @@ console.log(dataid); // let inputname;
 
 var jsonuser;
 var datas;
+var image;
+var img;
 console.log("hello"); //get the user
 
 var axios = require('axios');
@@ -2654,9 +2656,10 @@ function _makeGetRequest() {
 
             document.getElementById("edit-description").innerHTML = datas.description;
             document.getElementById("edit-shortdescription").innerHTML = datas.shortDescription;
-            document.getElementById("edit-name").value = datas.name; ///////////////////////////////////////////////////////////////////////////////////////////
+            document.getElementById("edit-name").value = datas.name;
+            document.getElementById("preview").src = "data:image;base64," + datas.image; ///////////////////////////////////////////////////////////////////////////////////////////
 
-          case 8:
+          case 9:
           case "end":
             return _context3.stop();
         }
@@ -2666,7 +2669,21 @@ function _makeGetRequest() {
   return _makeGetRequest.apply(this, arguments);
 }
 
-makeGetRequest(); //clic for edit
+makeGetRequest();
+document.getElementById("image-selector").addEventListener("change", function () {
+  readImage(document.getElementById("image-selector"), document.getElementById("preview"));
+});
+
+function readImage(imageSelector, imagePreview) {
+  var imageSelectorInput = imageSelector.files[0];
+  var imagePreviewElement = imagePreview;
+  var reader = new FileReader();
+  reader.readAsDataURL(imageSelectorInput);
+  reader.addEventListener('load', function (event) {
+    imagePreviewElement.src = event.target.result;
+  });
+} //clic for edit
+
 
 document.getElementById("button-edit").addEventListener("click", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
   var inputname, inputdescription, inputshortdescription, editcharacter, _editcharacter;
@@ -2685,7 +2702,8 @@ document.getElementById("button-edit").addEventListener("click", /*#__PURE__*/_a
                       params = {
                         name: name,
                         shortDescription: shortdescription,
-                        description: description
+                        description: description,
+                        image: img
                       };
                       _context.next = 3;
                       return axios.put('https://character-database.becode.xyz/characters/' + dataid, params);
@@ -2712,9 +2730,12 @@ document.getElementById("button-edit").addEventListener("click", /*#__PURE__*/_a
           inputname = document.getElementById("edit-name").value;
           inputdescription = document.getElementById("edit-description").value;
           inputshortdescription = document.getElementById("edit-shortdescription").value;
+          image = document.getElementById("preview");
+          img = image.src.replace('data:', '').replace(/^.+,/, '');
+          console.log("dans fonction:", img);
           editcharacter(inputname, inputdescription, inputshortdescription); // verification all value complete
 
-        case 6:
+        case 9:
         case "end":
           return _context2.stop();
       }
@@ -2749,7 +2770,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49965" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53919" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

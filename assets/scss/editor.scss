@@ -1,3 +1,83 @@
-body{
+body {
+    background-color: rgb(206, 206, 206);
+}
+
+section {
+    margin: 50px auto 50px auto;
+    padding: 30px;
+    border-radius: 20px;
     text-align: center;
+    background-color: rgb(231, 231, 231);
+
+    #button-edit {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        color: white;
+        background-color: teal;
+
+        margin: 10px 10% 10px 10%;
+        border: 1px solid grey;
+        padding: 10px 30px 10px 30px;
+        &:hover{
+            background-color: seagreen;
+        }
+        &:active {
+            color: teal;
+            background-color: white;
+        }
+    }
+
+    
+    #edit-shortdescription {
+        height: 150px;
+    }
+
+    #edit-description {
+        height: 300px;
+    }
+
+    #edit-name {
+        width: 200px;
+    }
+
+    #preview {
+        max-width: 70%;
+
+        padding : 20px 0 20px 0;
+    }
+
+}
+
+@media only screen and (max-width : 450px) {
+    section {
+        width: 100%;
+        textarea {
+            width: 95%;
+        }
+    }
+}
+
+@media only screen and (min-width: 451px) and (max-width:800px)  {
+    section {
+        width: 80%;
+        margin: 50px auto 50px auto;
+        box-sizing: border-box;
+        textarea {
+            width: 90%;
+        }
+
+
+    }
+}
+
+@media only screen and (min-width: 801px) {
+    section {
+        width: 50%;
+        margin: 50px auto 50px auto;
+
+        textarea {
+            width: 80%;
+        }
+    }
 }

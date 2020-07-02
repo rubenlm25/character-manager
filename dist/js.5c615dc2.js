@@ -1893,7 +1893,7 @@ module.exports = require('./lib/axios');
     for (i = 0; i < resp.data.length; i++) {
       a = document.importNode(item, true);
       a.setAttribute("id", resp.data[i].id);
-      a.getElementsByTagName("img")[0].src = "data:image/jpeg;base64," + resp.data[i].image;
+      a.getElementsByTagName("img")[0].src = "data:image;base64," + resp.data[i].image;
       a.querySelector(".name").textContent += resp.data[i].name;
       a.querySelector(".openchar").setAttribute("data-id", resp.data[i].id);
       a.querySelector(".shortdesc").textContent += resp.data[i].shortDescription;
@@ -1994,7 +1994,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49965" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53919" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

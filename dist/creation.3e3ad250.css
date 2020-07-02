@@ -1,5 +1,8 @@
+body {
+  background-color: #cecece;
+}
+
 section {
-  width: 50%;
   margin: 50px auto 50px auto;
   padding: 30px;
   border-radius: 20px;
@@ -22,6 +25,47 @@ section #run-creation:hover {
 section #run-creation:active {
   color: teal;
   background-color: white;
+}
+section #short-description-creation {
+  height: 150px;
+}
+section #description-creation {
+  height: 300px;
+}
+section #name-creation {
+  width: 200px;
+}
+section #preview {
+  max-width: 70%;
+  padding: 20px 0 20px 0;
+}
+
+@media only screen and (max-width: 450px) {
+  section {
+    width: 100%;
+  }
+  section textarea {
+    width: 95%;
+  }
+}
+@media only screen and (min-width: 451px) and (max-width: 800px) {
+  section {
+    width: 80%;
+    margin: 50px auto 50px auto;
+    box-sizing: border-box;
+  }
+  section textarea {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 801px) {
+  section {
+    width: 50%;
+    margin: 50px auto 50px auto;
+  }
+  section textarea {
+    width: 80%;
+  }
 }
 
 /*# sourceMappingURL=/creation.3e3ad250.css.map */
