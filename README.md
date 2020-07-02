@@ -17,3 +17,4 @@ Le but est est de créer une interface communiquant avec une API et permettant d
 Le projet a été entamé le vendredi 26 juin et la date limite pour rendre celui-ci était le mercredi 1 juillet à 17h. Le délai a été prolongé jusqu'au jeudi 2 juillet à 17h.
 
 ## Lien vers la page de démo
+https://rubenlm25.github.io/character-manager/
